@@ -1,17 +1,14 @@
 const { StatusCodes } = require("http-status-codes");
 const {AirplaneRepository } = require('../repositories');
 const AppError = require('../utils/errors/app-error');
-const airplane = require("../models/airplane");
 
  const airplaneRepository = new AirplaneRepository();
 
  async function createAirplane(data) {
     try {
         const airplane = await airplaneRepository.create(data);
-        console.log("airplane" , airplane);
         return airplane;
     } catch (error) {
-        console.log("Error in createAirplane service layer", error);
         if(error.name === "SequelizeValidationError"){
             let explanation = [];
             error.errors.forEach((err)=>{
