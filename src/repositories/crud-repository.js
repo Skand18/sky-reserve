@@ -45,7 +45,7 @@ class CrudRepository {
             }
         });
         if (response[0] === 0) {
-            throw new AppError("Not able to update airplane", StatusCodes.NOT_FOUND);
+            throw new AppError("Not able to update resource", StatusCodes.NOT_FOUND);
           }
         return response;
     }

@@ -12,6 +12,19 @@ function validateCreateRequest ( req, res, next) {
         next()
 }
 
+function validateUpdateRequest(req, res, next) {
+    if (!req?.body?.capacity) {
+      ErrorResponse.message = "Airplane capacity is required";
+      ErrorResponse.error = new AppError(
+        ['Airplane body not found in the incoming request'],
+        StatusCodes.BAD_REQUEST
+      );
+      return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+    }
+    next()
+}
+
 module.exports  = {
-    validateCreateRequest
+    validateCreateRequest,
+    validateUpdateRequest
 }

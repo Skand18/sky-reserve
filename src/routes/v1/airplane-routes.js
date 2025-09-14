@@ -12,10 +12,10 @@ router.get('/', AirplaneController.getAirplanes)
 // api/v1/airplane:id GET
 router.get('/:id', AirplaneController.getAirplane)
 
-// api/v1/airplane:id GET
+// api/v1/airplane:id DELETE
 router.delete('/:id', AirplaneController.deleteAirplane)
 
 // api/v1/airplane:id UPDATE
-router.patch('/:id', AirplaneController.updateAirplane);
+router.patch('/:id', AirplaneMiddlewares.validateUpdateRequest, AirplaneController.updateAirplane);
 
 module.exports = router;
