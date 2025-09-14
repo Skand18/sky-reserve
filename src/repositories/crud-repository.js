@@ -34,13 +34,8 @@ class CrudRepository {
     }
 
     async getAll(data) {
-        try {
             const response = await this.model.findAll();
             return response;
-        } catch (error) {
-            Logger.error("Something went wrong in : getAll");
-            throw error;
-        }
     }
 
     async update(id, data) {
@@ -49,6 +44,9 @@ class CrudRepository {
                 id: id
             }
         });
+        if (response[0] === 0) {
+            throw new AppError("Not able to update airplane", StatusCodes.NOT_FOUND);
+          }
         return response;
     }
 }
