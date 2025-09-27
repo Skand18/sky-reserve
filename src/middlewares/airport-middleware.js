@@ -23,30 +23,14 @@ function validateCreateRequest ( req, res, next) {
 }
 
 function validateUpdateRequest(req, res, next) {
-    if (!req?.body?.name) {
-      ErrorResponse.message = "Airport name is required";
+    if (!req?.body?.address && !req?.body?.name && !req?.body?.code && !req?.body?.cityId) {
+      ErrorResponse.message = "Something went wrong while updating the airport";
       ErrorResponse.error = new AppError(
-        ['Airport name not found in the incoming request'],
+        ['Missing parameters (name, code, cityId and address) found in the incoming request'],
         StatusCodes.BAD_REQUEST
       );
       return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
     }
-    if (!req?.body?.code) {
-        ErrorResponse.message = "City code is required";
-        ErrorResponse.error = new AppError(
-          ['City code not found in the incoming request'],
-          StatusCodes.BAD_REQUEST
-        );
-        return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
-      }
-      if (!req?.body?.cityId) {
-        ErrorResponse.message = "City Id is required";
-        ErrorResponse.error = new AppError(
-          ['City Id not found in the incoming request'],
-          StatusCodes.BAD_REQUEST
-        );
-        return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
-      }
     next()
 }
 
