@@ -22,7 +22,36 @@ function validateCreateRequest ( req, res, next) {
         next()
 }
 
+function validateUpdateRequest(req, res, next) {
+    if (!req?.body?.name) {
+      ErrorResponse.message = "Airport name is required";
+      ErrorResponse.error = new AppError(
+        ['Airport name not found in the incoming request'],
+        StatusCodes.BAD_REQUEST
+      );
+      return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+    }
+    if (!req?.body?.code) {
+        ErrorResponse.message = "City code is required";
+        ErrorResponse.error = new AppError(
+          ['City code not found in the incoming request'],
+          StatusCodes.BAD_REQUEST
+        );
+        return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+      }
+      if (!req?.body?.cityId) {
+        ErrorResponse.message = "City Id is required";
+        ErrorResponse.error = new AppError(
+          ['City Id not found in the incoming request'],
+          StatusCodes.BAD_REQUEST
+        );
+        return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+      }
+    next()
+}
+
 
 module.exports  = {
     validateCreateRequest,
+    validateUpdateRequest
 }

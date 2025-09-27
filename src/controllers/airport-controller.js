@@ -35,7 +35,7 @@ async function getAirports(req, res) {
 async function getAirport(req,res) {
     try {
         const id = req.params.id;
-        const airports = await AirportService.getAirports(id);
+        const airports = await AirportService.getAirport(id);
         SuccessResponse.data = airports;
         return res.status(StatusCodes.OK).json(SuccessResponse);
     } catch (error) {
@@ -60,7 +60,7 @@ async function updateAirport(req, res) {
     try {
         const id = req.params.id;
         const data = req.body;
-        const updatedAirport = await AirportService.updatAirport(id,data);
+        const updatedAirport = await AirportService.updateAirport(id,data);
         SuccessResponse.data = updatedAirport;
         return res.status(StatusCodes.OK).json(SuccessResponse);
     } catch (error) {
