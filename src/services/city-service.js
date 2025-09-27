@@ -16,7 +16,7 @@ async function createCity(data) {
             });
             throw new AppError(explanation, StatusCodes.BAD_REQUEST)
         }
-        throw new AppError("Error for create city", StatusCodes.INTERNAL_SERVER_ERROR)
+        throw new AppError("Cannot create a new city", StatusCodes.INTERNAL_SERVER_ERROR)
     }
  }
 

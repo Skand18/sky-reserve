@@ -16,7 +16,7 @@ const AppError = require('../utils/errors/app-error');
             });
             throw new AppError(explanation, StatusCodes.BAD_REQUEST)
         }
-        throw new AppError("Error for sequelize database", StatusCodes.INTERNAL_SERVER_ERROR)
+        throw new AppError("Cannot create a new airplane", StatusCodes.INTERNAL_SERVER_ERROR)
     }
  }
 
@@ -53,7 +53,7 @@ const AppError = require('../utils/errors/app-error');
     }
  }
 
- async function updatAirplane(id, data){
+ async function updateAirplane(id, data){
     try {
         const updatedAirplane = await airplaneRepository.update(id, data);
         return updatedAirplane;
@@ -78,5 +78,5 @@ const AppError = require('../utils/errors/app-error');
     getAirplanes,
     getAirplane,
     deleteAirplane,
-    updatAirplane
+    updateAirplane
  }
